@@ -1,27 +1,12 @@
-const canvas = document.querySelector('canvas');
-const c = canvas.getContext('2d');
+import Player from './player.js';
+import {c, canvas} from './canvas.js';
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const player = new Player(canvas);
 
-console.log(c);
-
-class Player {
-    constructor() {
-        this.position = {
-            x: 100,
-            y: 100
-        }
-
-        this.width = 30
-        this.height = 30
-    }
-
-    draw() {
-        c.fillStyle = 'red';
-        c.fillRect(this.position.x, this.position.y, this.width, this.height);
-    }
+function animate() {
+    requestAnimationFrame(animate);
+    c.clearRect(0, 0, canvas.width, canvas.height);
+    player.update();
 }
 
-const player = new Player()
-player.draw()
+animate();
