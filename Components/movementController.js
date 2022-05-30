@@ -29,6 +29,7 @@ export const move = (player, platforms) => {
         player.addVelocity(-PLAYER_SPEED, 0);
     } else if (keys[68].pressed && player.position.x < BOUNDARY_RIGHT) {
         player.addVelocity(PLAYER_SPEED, 0);
+        
     } else if (keys[87].pressed) {
         if (!keys[87].executed) {
             player.addVelocity(0, -PLAYER_JUMP);
@@ -38,10 +39,12 @@ export const move = (player, platforms) => {
         //     player.addVelocity(0, player.maxVelocity);
     } else {
         player.stop();
-        platformMovement(platforms);
+        player.scrollOffset -= platformMovement(platforms);
     }
     
     player.update();
+    
+    console.log(player.scrollOffset);
 };
 
 const platformMovement = (platforms) => {
@@ -54,6 +57,8 @@ const platformMovement = (platforms) => {
     }
     
     platforms.map(p => p.position.x += movementValue);
+    
+    return movementValue;
 };
 
 export const keyInput = (keyCode) => {

@@ -6,10 +6,11 @@ import {move, keyUp, keyInput} from './Components/movementController.js';
 const player = new Player(canvas);
 const platforms = [new Platform(canvas), new Platform(canvas, 500, 600), new Platform(canvas, 900, 900)];
 
-function animate() {
-    requestAnimationFrame(animate);
-    c.clearRect(0, 0, canvas.width, canvas.height);
-    
+function endGame() {
+    console.log('You Won!');
+}
+
+function run() {
     move(player, platforms);
     
     platforms.map(p => {
@@ -18,9 +19,16 @@ function animate() {
             player.velocity.y = 0;
         }
     });
+    
+    if (player.scrollOffset >= 1000) {
+        endGame();
+    } else {
+        requestAnimationFrame(run);
+        c.clearRect(0, 0, canvas.width, canvas.height);
+    }
 }
 
-animate();
+run();
 
 window.addEventListener('keydown', ({keyCode, repeat}) => keyInput(keyCode, repeat));
 window.addEventListener('keyup', ({keyCode}) => keyUp(keyCode));

@@ -12,6 +12,7 @@ class Player {
         this.maxVelocity = MAX_VELOCITY;
         this.canvas = canvas;
         this.context = canvas.getContext('2d');
+        this.scrollOffset = 0;
         
         this.position = {
             x: INITIAL_POSITION_X, y: INITIAL_POSITION_Y
