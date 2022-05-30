@@ -1,7 +1,8 @@
 const GRAVITY = 0.8;
+const FRICTION = 0.9;
 
 const INITIAL_POSITION_X = 100;
-const INITIAL_POSITION_Y = 100;
+const INITIAL_POSITION_Y = 400;
 const INITIAL_WIDTH_Y = 30;
 const INITIAL_HEIGHT_Y = 30;
 const MAX_VELOCITY = 10;
@@ -47,7 +48,7 @@ class Player {
     }
     
     stop() {
-        this.velocity.x = 0;
+        this.velocity.x *= FRICTION;
     }
 }
 
