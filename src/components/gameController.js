@@ -34,7 +34,7 @@ class GameController {
     };
     
     initLevel1 = () => {
-        this.player = new Player(this.canvas, sprites.idleRight);
+        this.player = new Player(this.canvas, sprites);
         this.objects = [
             new BackgroundObject(this.c, paths.background, 0, 0, 0),
             new BackgroundObject(this.c, paths.backgroundSmallClouds),

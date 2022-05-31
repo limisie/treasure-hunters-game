@@ -15,22 +15,22 @@ const sprites = {
         },
         frames: 36
     },
-    // runRight: {
-    //     path: '',
-    //     size: {
-    //         width: 10,
-    //         height: 10,
-    //     },
-    //     frames: 0
-    // },
-    // runLeft: {
-    //     path: '',
-    //     size: {
-    //         width: 10,
-    //         height: 10,
-    //     },
-    //     frames: 0
-    // },
+    runRight: {
+        path: '../../assets/crabSprites/runRight.png',
+        size: {
+            width: 80,
+            height: 48,
+        },
+        frames: 18
+    },
+    runLeft: {
+        path: '../../assets/crabSprites/runLeft.png',
+        size: {
+            width: 80,
+            height: 48,
+        },
+        frames: 18
+    },
 };
 
 export default sprites;

@@ -59,9 +59,9 @@ export class GenericObject {
 }
 
 export class AnimatedObject extends GenericObject {
-    constructor(context, sprite, x = 0, y = 0) {
-        super(context, sprite, x, y);
-        this.sr = new SpriteRenderer(sprite);
+    constructor(context, sprites, x = 0, y = 0) {
+        super(context, sprites.idleRight, x, y);
+        this.sr = new SpriteRenderer(sprites);
     }
     
     draw() {
@@ -80,11 +80,12 @@ export class AnimatedObject extends GenericObject {
     }
     
     update() {
+        this.sr.nextFrame();
+        
         this.draw();
         
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
-        this.sr.nextFrame();
     }
 }
 

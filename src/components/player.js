@@ -7,8 +7,8 @@ const INITIAL_POSITION_Y = 400;
 
 
 class Player extends AnimatedObject {
-    constructor(canvas, sprite) {
-        super(canvas.getContext('2d'), sprite, INITIAL_POSITION_X, INITIAL_POSITION_Y);
+    constructor(canvas, sprites) {
+        super(canvas.getContext('2d'), sprites, INITIAL_POSITION_X, INITIAL_POSITION_Y);
         this.canvas = canvas;
         this.scrollOffset = 0;
         this.jumping = false;
@@ -25,6 +25,10 @@ class Player extends AnimatedObject {
             this.jumping = false;
         }
     }
+    
+    flipSprite = (speed) => {
+        this.sr.changeSprite(speed);
+    };
 }
 
 export default Player;
