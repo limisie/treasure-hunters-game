@@ -33,11 +33,10 @@ export class Controller {
     move = () => {
         
         if (keys[68].pressed) {
-            
             if (this.player.position.x < BOUNDARY_RIGHT) {
                 this.movePlayer(PLAYER_SPEED);
             } else {
-                this.movePlatform(-PLAYER_SPEED);
+                this.moveObjects(-PLAYER_SPEED);
             }
             
             this.player.scrollOffset += PLAYER_SPEED;
@@ -46,16 +45,13 @@ export class Controller {
             if (this.player.position.x > BOUNDARY_LEFT) {
                 this.movePlayer(-PLAYER_SPEED);
             } else {
-                this.movePlatform(PLAYER_SPEED);
+                this.moveObjects(PLAYER_SPEED);
             }
             
             this.player.scrollOffset -= PLAYER_SPEED;
             
         } else {
-            
-            this.player.stop();
-            this.platforms.map(p => p.stop());
-            
+            this.stopAll();
         }
         
         if (keys[87].pressed) {
@@ -73,17 +69,28 @@ export class Controller {
     movePlayer = (speed) => {
         this.player.addVelocity(speed, 0);
         this.platforms.map(p => p.stop());
+        this.objects.map(o => o.stop());
+        
     };
     
-    movePlatform = (speed) => {
+    moveObjects = (speed) => {
         this.player.stop();
         this.platforms.map(p => p.addVelocity(speed));
+        this.objects.map(o => o.addVelocity(speed));
+    };
+    
+    stopAll = () => {
+        this.player.stop();
+        this.platforms.map(p => p.stop());
+        this.objects.map(o => o.stop());
     };
     
     updateElements = () => {
         this.objects.map(o => o.update());
         this.platforms.map(p => p.update(this.player));
         this.player.update();
+        
+        this.objects.map(o => o.position.y = -this.player.position.y * 0.05);
     };
     
 }

@@ -7,26 +7,47 @@ const FRICTION = 0.8;
 
 export class GenericObject {
     constructor(context,
-                path,
+                {path, scrollSpeed},
                 x = 0,
-                y = 0) {
+                y = 0,
+                constVelocity = -2) {
         this.context = context;
         
         this.image = new Image();
         this.image.src = path;
         
+        this.scrollSpeed = scrollSpeed;
+        this.constVelocity = constVelocity;
+        
         this.position = {
             x: x,
             y: y
+        };
+        
+        this.velocity = {
+            x: 0,
+            y: 0
         };
     }
     
     update() {
         this.draw();
+        
+        this.position.x += (this.velocity.x + this.constVelocity) * this.scrollSpeed;
+        this.position.y += this.velocity.y * 0.1;
     }
     
     draw() {
         this.context.drawImage(this.image, this.position.x, this.position.y);
+    }
+    
+    addVelocity(x, y = 0) {
+        if (-MAX_VELOCITY < this.velocity.x && this.velocity.x < MAX_VELOCITY) this.velocity.x += x;
+        if (-MAX_VELOCITY < this.velocity.y && this.velocity.y < MAX_VELOCITY) this.velocity.y += y;
+    }
+    
+    stop() {
+        this.velocity.x *= FRICTION;
     }
 }
 
@@ -35,35 +56,19 @@ export class Platform extends GenericObject {
                 {path, width},
                 x = INITIAL_POSITION_X,
                 y = INITIAL_POSITION_Y) {
-        super(context, path, x, y);
+        super(context, {path: path, scrollSpeed: 1}, x, y, 0);
         
         this.collider = new Collider(this);
-        
         this.width = width;
-        this.height = 20;
-        
-        this.velocity = {
-            x: 0, y: 0
-        };
     }
     
     update(player = null) {
-        this.draw();
+        super.update();
         
         if (player != null) {
             if (this.collider.checkForCollisions(player)) {
                 player.velocity.y = 0;
             }
         }
-        
-        this.position.x += this.velocity.x;
-    }
-    
-    addVelocity(x) {
-        if (-MAX_VELOCITY < this.velocity.x && this.velocity.x < MAX_VELOCITY) this.velocity.x += x;
-    }
-    
-    stop() {
-        this.velocity.x *= FRICTION;
     }
 }
