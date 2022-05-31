@@ -49,21 +49,32 @@ export class GenericObject {
 
 export class BackgroundObject extends GenericObject {
     constructor(context,
-                {path, scrollSpeed},
+                {path, width, scrollSpeed},
                 x = 0,
                 y = 0,
-                constVelocity = -2) {
+                constVelocity = -2,
+                jumpRatio = 0.05) {
         super(context, path, x, y);
         
         this.scrollSpeed = scrollSpeed;
         this.constVelocity = constVelocity;
+        this.jumpRatio = jumpRatio;
+        this.width = width;
     }
     
-    update() {
+    update(player = null) {
         this.draw();
         
         this.position.x += (this.velocity.x + this.constVelocity) * this.scrollSpeed;
-        this.position.y += this.velocity.y * 0.1;
+        
+        if (this.position.x <= -this.width * 2 + 1) {
+            this.position.x = this.width;
+        }
+        
+        if (player != null) {
+            this.position.y = -player.position.y * this.jumpRatio;
+        }
+        
     }
 }
 

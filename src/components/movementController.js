@@ -24,9 +24,8 @@ const keys = {
 };
 
 export class Controller {
-    constructor(player, platforms, objects) {
+    constructor(player, objects) {
         this.player = player;
-        this.platforms = platforms;
         this.objects = objects;
     }
     
@@ -68,29 +67,23 @@ export class Controller {
     
     movePlayer = (speed) => {
         this.player.addVelocity(speed, 0);
-        this.platforms.map(p => p.stop());
         this.objects.map(o => o.stop());
         
     };
     
     moveObjects = (speed) => {
         this.player.stop();
-        this.platforms.map(p => p.addVelocity(speed));
         this.objects.map(o => o.addVelocity(speed));
     };
     
     stopAll = () => {
         this.player.stop();
-        this.platforms.map(p => p.stop());
         this.objects.map(o => o.stop());
     };
     
     updateElements = () => {
-        this.objects.map(o => o.update());
-        this.platforms.map(p => p.update(this.player));
+        this.objects.map(o => o.update(this.player));
         this.player.update();
-        
-        this.objects.map(o => o.position.y = -this.player.position.y * 0.05);
     };
     
 }

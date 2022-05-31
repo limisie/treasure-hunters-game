@@ -1,17 +1,17 @@
 const paths = {
     background: {
         path: '../../assets/bgd.png',
-        width: 800,
+        width: 900,
         scrollSpeed: 0,
     },
     backgroundBigClouds: {
         path: '../../assets/bgd_big_clouds.png',
-        width: 800,
+        width: 900,
         scrollSpeed: 0.1,
     },
     backgroundSmallClouds: {
         path: '../../assets/bgd_small_clouds.png',
-        width: 800,
+        width: 900,
         scrollSpeed: 0.05,
     },
     platformStandard: {
