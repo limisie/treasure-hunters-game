@@ -23,8 +23,6 @@ class Player extends GenericObject {
         
         if (this.position.y + this.height + this.velocity.y <= this.canvas.height) {
             this.velocity.y += GRAVITY;
-        } else {
-            this.velocity.y = 0;
         }
         
         if (this.velocity.y === GRAVITY || this.velocity.y === 0) {
