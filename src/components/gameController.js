@@ -5,7 +5,6 @@ class GameController {
     }
     
     endCondition = () => {
-        console.log(this.player.scrollOffset);
         return this.player.scrollOffset >= this.endOffset;
     };
     

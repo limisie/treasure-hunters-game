@@ -1,5 +1,5 @@
 import Player from './Components/player.js';
-import Platform from './Components/platform.js';
+import {Platform, GenericObject} from './Components/platform.js';
 import {keyUp, keyInput, Controller} from './Components/movementController.js';
 import paths from './components/imagePaths.js';
 import GameController from './components/gameController.js';
@@ -11,17 +11,23 @@ canvas.width = 800;
 canvas.height = 600;
 
 const player = new Player(canvas);
-const platforms = [new Platform(c, paths.standardPlatform, -64, 448),
-    new Platform(c, paths.standardPlatform),
-    new Platform(c, paths.standardPlatform, 512, 256)];
-const controller = new Controller(player, platforms);
+const objects = [
+    new GenericObject(c, paths.background.path)
+];
+const platforms = [
+    new Platform(c, paths.platformThin, 650, 288),
+    new Platform(c, paths.platformStandard, 200, 450),
+    new Platform(c, paths.platformWide, 1500, 550),
+    new Platform(c, paths.platformWide, -32, 550)];
+const controller = new Controller(player, platforms, objects);
 const gameController = new GameController(player, 1000);
 
 
 function run() {
+    c.fillStyle = 'white';
+    c.fillRect(0, 0, canvas.width, canvas.height);
+    
     if (!gameController.endCondition()) {
-        c.fillStyle = 'white';
-        c.fillRect(0, 0, canvas.width, canvas.height);
         requestAnimationFrame(run);
     } else {
         gameController.endGame();

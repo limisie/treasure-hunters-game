@@ -24,9 +24,10 @@ const keys = {
 };
 
 export class Controller {
-    constructor(player, platforms) {
+    constructor(player, platforms, objects) {
         this.player = player;
         this.platforms = platforms;
+        this.objects = objects;
     }
     
     move = () => {
@@ -63,13 +64,10 @@ export class Controller {
                 this.player.addVelocity(0, -PLAYER_JUMP);
                 this.player.jumping = true;
             }
+            
         }
         
-        this.collisionDetection();
-        
-        this.player.update();
-        this.platforms.map(p => p.update());
-        
+        this.updateElements();
     };
     
     movePlayer = (speed) => {
@@ -82,16 +80,22 @@ export class Controller {
         this.platforms.map(p => p.addVelocity(speed));
     };
     
-    collisionDetection = () => {
-        this.platforms.map(p => {
-            p.draw();
-            
-            if (p.collider.checkForCollisions(this.player)) {
-                this.player.velocity.y = 0;
-            }
-        });
+    updateElements = () => {
+        this.objects.map(o => o.update());
+        this.platforms.map(p => p.update(this.player));
+        this.player.update();
     };
+    
 }
 
-export const keyInput = (keyCode) => keys[keyCode].pressed = keys.valid.includes(keyCode);
-export const keyUp = (keyCode) => keys[keyCode].pressed = !keys.valid.includes(keyCode);
+export const keyInput = (keyCode) => {
+    if (keys.valid.includes(keyCode)) {
+        keys[keyCode].pressed = true;
+    }
+};
+
+export const keyUp = (keyCode) => {
+    if (keys.valid.includes(keyCode)) {
+        keys[keyCode].pressed = false;
+    }
+};
