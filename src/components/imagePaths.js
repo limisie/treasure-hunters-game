@@ -34,6 +34,11 @@ const paths = {
         width: 384,
         scrollSpeed: 1,
     },
+    player: {
+        path: '../../assets/player.png',
+        width: 0,
+        scrollSpeed: 1,
+    },
 };
 
 export default paths;

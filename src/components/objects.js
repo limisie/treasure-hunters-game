@@ -7,17 +7,13 @@ const FRICTION = 0.8;
 
 export class GenericObject {
     constructor(context,
-                {path, scrollSpeed},
+                path,
                 x = 0,
-                y = 0,
-                constVelocity = -2) {
+                y = 0) {
         this.context = context;
         
         this.image = new Image();
         this.image.src = path;
-        
-        this.scrollSpeed = scrollSpeed;
-        this.constVelocity = constVelocity;
         
         this.position = {
             x: x,
@@ -33,8 +29,8 @@ export class GenericObject {
     update() {
         this.draw();
         
-        this.position.x += (this.velocity.x + this.constVelocity) * this.scrollSpeed;
-        this.position.y += this.velocity.y * 0.1;
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y;
     }
     
     draw() {
@@ -51,12 +47,32 @@ export class GenericObject {
     }
 }
 
+export class BackgroundObject extends GenericObject {
+    constructor(context,
+                {path, scrollSpeed},
+                x = 0,
+                y = 0,
+                constVelocity = -2) {
+        super(context, path, x, y);
+        
+        this.scrollSpeed = scrollSpeed;
+        this.constVelocity = constVelocity;
+    }
+    
+    update() {
+        this.draw();
+        
+        this.position.x += (this.velocity.x + this.constVelocity) * this.scrollSpeed;
+        this.position.y += this.velocity.y * 0.1;
+    }
+}
+
 export class Platform extends GenericObject {
     constructor(context,
                 {path, width},
                 x = INITIAL_POSITION_X,
                 y = INITIAL_POSITION_Y) {
-        super(context, {path: path, scrollSpeed: 1}, x, y, 0);
+        super(context, path, x, y);
         
         this.collider = new Collider(this);
         this.width = width;
