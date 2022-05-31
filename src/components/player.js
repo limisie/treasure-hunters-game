@@ -1,4 +1,4 @@
-import {GenericObject} from './objects.js';
+import { GenericObject } from './objects.js';
 
 const GRAVITY = 0.8;
 

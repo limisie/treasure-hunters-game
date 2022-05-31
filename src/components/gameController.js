@@ -1,5 +1,5 @@
 import Player from './player.js';
-import {BackgroundObject, Platform} from './objects.js';
+import { BackgroundObject, Platform } from './objects.js';
 import paths from './imagePaths.js';
 
 const RESOLUTION_X = 800;
