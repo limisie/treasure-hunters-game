@@ -5,17 +5,17 @@ const paths = {
         scrollSpeed: 0,
     },
     backgroundBigClouds: {
-        path: '../../assets/bgd_big_clouds.png',
+        path: '../../assets/bgdCloudsBig.png',
         width: 900,
         scrollSpeed: 0.1,
     },
     backgroundSmallClouds: {
-        path: '../../assets/bgd_small_clouds.png',
+        path: '../../assets/bgdCloudsSmall.png',
         width: 900,
         scrollSpeed: 0.05,
     },
     platformStandard: {
-        path: '../../assets/platform2.png',
+        path: '../../assets/platform.png',
         width: 384,
         scrollSpeed: 1,
     },
