@@ -1,4 +1,5 @@
-import { GameController, keyInput, keyUp } from './components/gameController.js';
+import GameController from './components/gameController.js';
+import { keyInput, keyUp } from './components/inputController.js';
 
 const gameController = new GameController();
 gameController.initLevel1();
