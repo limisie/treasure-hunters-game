@@ -1,42 +1,66 @@
 const paths = {
     background: {
         path: '../../assets/bgd.png',
-        width: 900,
+        size: {
+            width: 900,
+            height: 675,
+        },
         scrollSpeed: 0,
     },
     backgroundBigClouds: {
         path: '../../assets/bgdCloudsBig.png',
-        width: 900,
+        size: {
+            width: 900,
+            height: 675,
+        },
         scrollSpeed: 0.1,
     },
     backgroundSmallClouds: {
         path: '../../assets/bgdCloudsSmall.png',
-        width: 900,
+        size: {
+            width: 900,
+            height: 675,
+        },
         scrollSpeed: 0.05,
     },
     platformStandard: {
         path: '../../assets/platform.png',
-        width: 384,
+        size: {
+            width: 384,
+            height: 256,
+        },
         scrollSpeed: 1,
     },
     platformWide: {
         path: '../../assets/platformWide.png',
-        width: 768,
+        size: {
+            width: 768,
+            height: 256,
+        },
         scrollSpeed: 1,
     },
     platformLeft: {
         path: '../../assets/platformLeft.png',
-        width: 448,
+        size: {
+            width: 448,
+            height: 128,
+        },
         scrollSpeed: 1,
     },
     platformThin: {
         path: '../../assets/platformThin.png',
-        width: 384,
+        size: {
+            width: 384,
+            height: 128,
+        },
         scrollSpeed: 1,
     },
     player: {
         path: '../../assets/player.png',
-        width: 0,
+        size: {
+            width: 144,
+            height: 64,
+        },
         scrollSpeed: 1,
     },
 };

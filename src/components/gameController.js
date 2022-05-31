@@ -1,7 +1,8 @@
-import Player from './player.js';
-import { BackgroundObject, Platform } from './objects.js';
-import paths from './imagePaths.js';
 import { InputController } from './inputController.js';
+import { BackgroundObject, Platform } from './objects.js';
+import Player from './player.js';
+import paths from './imagePaths.js';
+import sprites from './spritesPaths.js';
 
 const RESOLUTION_X = 800;
 const RESOLUTION_Y = 600;
@@ -33,7 +34,7 @@ class GameController {
     };
     
     initLevel1 = () => {
-        this.player = new Player(this.canvas, paths.player.path);
+        this.player = new Player(this.canvas, sprites.idleRight);
         this.objects = [
             new BackgroundObject(this.c, paths.background, 0, 0, 0),
             new BackgroundObject(this.c, paths.backgroundSmallClouds),

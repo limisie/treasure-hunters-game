@@ -1,4 +1,5 @@
 import Collider from './collider.js';
+import SpriteRenderer from './spriteRenderer.js';
 
 const INITIAL_POSITION_X = 200;
 const INITIAL_POSITION_Y = 400;
@@ -7,7 +8,7 @@ const FRICTION = 0.8;
 
 export class GenericObject {
     constructor(context,
-                path,
+                {path, size},
                 x = 0,
                 y = 0) {
         this.context = context;
@@ -24,6 +25,11 @@ export class GenericObject {
             x: 0,
             y: 0
         };
+        
+        this.size = {
+            width: size.width,
+            height: size.height
+        };
     }
     
     update() {
@@ -34,7 +40,12 @@ export class GenericObject {
     }
     
     draw() {
-        this.context.drawImage(this.image, this.position.x, this.position.y);
+        this.context.drawImage(
+            this.image,
+            this.position.x,
+            this.position.y,
+            this.size.width,
+            this.size.height);
     }
     
     addVelocity(x, y = 0) {
@@ -47,19 +58,48 @@ export class GenericObject {
     }
 }
 
+export class AnimatedObject extends GenericObject {
+    constructor(context, sprite, x = 0, y = 0) {
+        super(context, sprite, x, y);
+        this.sr = new SpriteRenderer(sprite);
+    }
+    
+    draw() {
+        this.context.drawImage(
+            this.sr.image,
+            
+            this.sr.size.width * this.sr.currentFrame,
+            0,
+            this.sr.size.width,
+            this.sr.size.height,
+            
+            this.position.x,
+            this.position.y,
+            this.size.width,
+            this.size.height);
+    }
+    
+    update() {
+        this.draw();
+        
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y;
+        this.sr.nextFrame();
+    }
+}
+
 export class BackgroundObject extends GenericObject {
     constructor(context,
-                {path, width, scrollSpeed},
+                {path, size, scrollSpeed},
                 x = 0,
                 y = 0,
                 constVelocity = -2,
                 jumpRatio = 0.05) {
-        super(context, path, x, y);
+        super(context, {path, size}, x, y);
         
         this.scrollSpeed = scrollSpeed;
         this.constVelocity = constVelocity;
         this.jumpRatio = jumpRatio;
-        this.width = width;
     }
     
     update(player = null) {
@@ -67,8 +107,8 @@ export class BackgroundObject extends GenericObject {
         
         this.position.x += (this.velocity.x + this.constVelocity) * this.scrollSpeed;
         
-        if (this.position.x <= -this.width * 2 + 1) {
-            this.position.x = this.width;
+        if (this.position.x <= -this.size.width * 2 + 1) {
+            this.position.x = this.size.width;
         }
         
         if (player != null) {
@@ -80,13 +120,12 @@ export class BackgroundObject extends GenericObject {
 
 export class Platform extends GenericObject {
     constructor(context,
-                {path, width},
+                {path, size},
                 x = INITIAL_POSITION_X,
                 y = INITIAL_POSITION_Y) {
-        super(context, path, x, y);
+        super(context, {path, size}, x, y);
         
         this.collider = new Collider(this);
-        this.width = width;
     }
     
     update(player = null) {
