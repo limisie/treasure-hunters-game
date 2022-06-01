@@ -1,8 +1,8 @@
 import { InputController } from './inputController.js';
 import { BackgroundObject, Platform } from './objects.js';
 import Player from './player.js';
-import paths from './imagePaths.js';
-import sprites from './spritesPaths.js';
+import paths from '../../assets/paths/imagePaths.js';
+import sprites from '../../assets/paths/spritesCrabPaths.js';
 
 const RESOLUTION_X = 800;
 const RESOLUTION_Y = 600;
