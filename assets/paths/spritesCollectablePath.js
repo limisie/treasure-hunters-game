@@ -1,4 +1,12 @@
 const sprites = {
+    def: {
+        path: '../../assets/sprites/diamondBlue.png',
+        size: {
+            width: 28,
+            height: 24,
+        },
+        frames: 12
+    },
     diamondBlue: {
         path: '../../assets/sprites/diamondBlue.png',
         size: {

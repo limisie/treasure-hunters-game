@@ -1,4 +1,12 @@
 const sprites = {
+    def: {
+        path: '../../assets/crabSprites/idleRight.png',
+        size: {
+            width: 84,
+            height: 58,
+        },
+        frames: 36
+    },
     idleRight: {
         path: '../../assets/crabSprites/idleRight.png',
         size: {

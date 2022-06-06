@@ -1,8 +1,8 @@
-class SpriteRenderer {
+export class SpriteRenderer {
     constructor(sprites) {
         this.sprites = sprites;
         
-        this.currentSprite = this.sprites.idleLeft;
+        this.currentSprite = this.sprites.def;
         
         this.image = new Image();
         this.image.src = this.currentSprite.path;
@@ -46,8 +46,5 @@ class SpriteRenderer {
             height: this.currentSprite.size.height,
         };
         this.frames = this.currentSprite.frames - 1;
-        // this.currentFrame = 0;
     };
 }
-
-export default SpriteRenderer;

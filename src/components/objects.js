@@ -1,5 +1,5 @@
-import Collider from './collider.js';
-import SpriteRenderer from './spriteRenderer.js';
+import { CollectibleCollider, PlatformCollider } from './collider.js';
+import { SpriteRenderer } from './spriteRenderer.js';
 
 const INITIAL_POSITION_X = 200;
 const INITIAL_POSITION_Y = 400;
@@ -60,7 +60,7 @@ export class GenericObject {
 
 export class AnimatedObject extends GenericObject {
     constructor(context, sprites, x = 0, y = 0) {
-        super(context, sprites.idleRight, x, y);
+        super(context, sprites.def, x, y);
         this.sr = new SpriteRenderer(sprites);
     }
     
@@ -86,6 +86,44 @@ export class AnimatedObject extends GenericObject {
         
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
+    }
+}
+
+export class CollectableObject extends AnimatedObject {
+    constructor(context, sprites, x = 0, y = 0) {
+        super(context, sprites, x, y);
+        
+        this.collider = new CollectibleCollider(this);
+        
+        this.floatPosition = 0;
+        this.FLOAT_SPEED = 0.2;
+        this.FLOAT_MAX = 5;
+        
+        this.velocity.y = this.FLOAT_SPEED;
+    }
+    
+    update(player = null) {
+        if (this.collider != null) {
+            super.update();
+            
+            if (player != null) {
+                if (this.collider.checkForCollisions(player)) {
+                    player.score += 1;
+                    delete this.collider;
+                }
+            }
+            
+            this.float();
+        }
+    }
+    
+    float() {
+        if ((this.velocity.y > 0 && this.floatPosition > this.FLOAT_MAX) ||
+            (this.velocity.y < 0 && this.floatPosition < -this.FLOAT_MAX)) {
+            this.velocity.y = -this.velocity.y;
+        }
+        
+        this.floatPosition += this.velocity.y;
     }
 }
 
@@ -126,7 +164,7 @@ export class Platform extends GenericObject {
                 y = INITIAL_POSITION_Y) {
         super(context, {path, size}, x, y);
         
-        this.collider = new Collider(this);
+        this.collider = new PlatformCollider(this);
     }
     
     update(player = null) {

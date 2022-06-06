@@ -1,8 +1,9 @@
 import { InputController } from './inputController.js';
-import { BackgroundObject, Platform } from './objects.js';
+import { BackgroundObject, CollectableObject, Platform } from './objects.js';
 import Player from './player.js';
 import paths from '../../assets/paths/imagePaths.js';
-import sprites from '../../assets/paths/spritesCrabPaths.js';
+import crabSprites from '../../assets/paths/spritesCrabPaths.js';
+import diamondSprites from '../../assets/paths/spritesCollectablePath.js';
 
 const RESOLUTION_X = 800;
 const RESOLUTION_Y = 600;
@@ -34,7 +35,7 @@ class GameController {
     };
     
     initLevel1 = () => {
-        this.player = new Player(this.canvas, sprites);
+        this.player = new Player(this.canvas, crabSprites);
         this.objects = [
             new BackgroundObject(this.c, paths.background, 0, 0, 0),
             new BackgroundObject(this.c, paths.backgroundSmallClouds),
@@ -45,7 +46,9 @@ class GameController {
             new Platform(this.c, paths.platformThin, 650, 288),
             new Platform(this.c, paths.platformStandard, 200, 450),
             new Platform(this.c, paths.platformWide, 1500, 550),
-            new Platform(this.c, paths.platformWide, -32, 550)
+            new Platform(this.c, paths.platformWide, -32, 550),
+            new CollectableObject(this.c, diamondSprites, 400, 400),
+            new CollectableObject(this.c, diamondSprites, 500, 400)
         ];
         
         this.controller = new InputController(this.player, this.objects);

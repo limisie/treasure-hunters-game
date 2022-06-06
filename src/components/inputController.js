@@ -82,7 +82,6 @@ export class InputController {
         this.player.addVelocity(speed, 0);
         this.player.flipSprite(speed);
         this.objects.map(o => o.stop());
-        
     };
     
     moveObjects = (speed) => {
