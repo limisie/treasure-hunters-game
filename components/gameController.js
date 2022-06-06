@@ -1,9 +1,10 @@
 import { InputController } from './inputController.js';
 import { BackgroundObject, CollectableObject, Platform } from './objects.js';
 import Player from './player.js';
-import paths from '../../assets/paths/imagePaths.js';
-import crabSprites from '../../assets/paths/spritesCrabPaths.js';
-import diamondSprites from '../../assets/paths/spritesCollectablePath.js';
+import paths from '../assets/paths/imagePaths.js';
+import crabSprites from '../assets/paths/spritesCrabPaths.js';
+import diamondSprites from '../assets/paths/spritesCollectablePath.js';
+import { gameOver, youWon } from './UI/ui.js';
 
 const RESOLUTION_X = 800;
 const RESOLUTION_Y = 600;
@@ -24,7 +25,7 @@ class GameController {
     run = () => {
         if (this.gameLooseCondition(DEATH_ZONE)) {
             this.gameOver();
-            this.initLevel1();
+            // this.initLevel1();
         } else if (!this.gameWinCondition(GAME_END_OFFSET)) {
             requestAnimationFrame(this.run);
         } else {
@@ -47,8 +48,8 @@ class GameController {
             new Platform(this.c, paths.platformStandard, 200, 450),
             new Platform(this.c, paths.platformWide, 1500, 550),
             new Platform(this.c, paths.platformWide, -32, 550),
-            new CollectableObject(this.c, diamondSprites, 400, 400),
-            new CollectableObject(this.c, diamondSprites, 500, 400)
+            new CollectableObject(this.c, diamondSprites, 400, 410),
+            new CollectableObject(this.c, diamondSprites, 500, 410)
         ];
         
         this.controller = new InputController(this.player, this.objects);
@@ -65,11 +66,11 @@ class GameController {
     };
     
     gameOver = () => {
-        console.log('You loose!');
+        gameOver(this.player.score);
     };
     
     gameEnd = () => {
-        console.log('You Won!');
+        youWon(this.player.score);
     };
 }
 

@@ -1,6 +1,6 @@
 const sprites = {
     def: {
-        path: '../../assets/sprites/diamondBlue.png',
+        path: '../../assets/imgs/sprites/objectSprites/diamondBlue.png',
         size: {
             width: 28,
             height: 24,
@@ -8,7 +8,7 @@ const sprites = {
         frames: 12
     },
     diamondBlue: {
-        path: '../../assets/sprites/diamondBlue.png',
+        path: '../../assets/imgs/sprites/objectSprites/diamondBlue.png',
         size: {
             width: 28,
             height: 24,
@@ -16,7 +16,7 @@ const sprites = {
         frames: 12
     },
     collect: {
-        path: '../../assets/crabSprites/diamondCollect.png',
+        path: '../../assets/imgs/sprites/crabSprites/diamondCollect.png',
         size: {
             width: 48,
             height: 48,

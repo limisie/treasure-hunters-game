@@ -1,6 +1,6 @@
 const paths = {
     background: {
-        path: '../../assets/bgd.png',
+        path: '../../assets/imgs/bgd.png',
         size: {
             width: 900,
             height: 675,
@@ -8,7 +8,7 @@ const paths = {
         scrollSpeed: 0,
     },
     backgroundBigClouds: {
-        path: '../../assets/bgdCloudsBig.png',
+        path: '../../assets/imgs/bgdCloudsBig.png',
         size: {
             width: 900,
             height: 675,
@@ -16,7 +16,7 @@ const paths = {
         scrollSpeed: 0.1,
     },
     backgroundSmallClouds: {
-        path: '../../assets/bgdCloudsSmall.png',
+        path: '../../assets/imgs/bgdCloudsSmall.png',
         size: {
             width: 900,
             height: 675,
@@ -24,7 +24,7 @@ const paths = {
         scrollSpeed: 0.05,
     },
     platformStandard: {
-        path: '../../assets/platform.png',
+        path: '../../assets/imgs/platform.png',
         size: {
             width: 384,
             height: 256,
@@ -32,7 +32,7 @@ const paths = {
         scrollSpeed: 1,
     },
     platformWide: {
-        path: '../../assets/platformWide.png',
+        path: '../../assets/imgs/platformWide.png',
         size: {
             width: 768,
             height: 256,
@@ -40,7 +40,7 @@ const paths = {
         scrollSpeed: 1,
     },
     platformLeft: {
-        path: '../../assets/platformLeft.png',
+        path: '../../assets/imgs/platformLeft.png',
         size: {
             width: 448,
             height: 128,
@@ -48,7 +48,7 @@ const paths = {
         scrollSpeed: 1,
     },
     platformThin: {
-        path: '../../assets/platformThin.png',
+        path: '../../assets/imgs/platformThin.png',
         size: {
             width: 384,
             height: 128,
@@ -56,13 +56,29 @@ const paths = {
         scrollSpeed: 1,
     },
     player: {
-        path: '../../assets/player.png',
+        path: '../../assets/imgs/player.png',
         size: {
             width: 144,
             height: 64,
         },
         scrollSpeed: 1,
     },
+    gameOver: {
+        path: '../../assets/imgs/ui/gameover.png',
+        size: {
+            width: 192,
+            height: 192,
+        },
+        scrollSpeed: 1,
+    },
+    youWon: {
+        path: '../../assets/imgs/ui/youwon.png',
+        size: {
+            width: 192,
+            height: 192,
+        },
+        scrollSpeed: 1,
+    }
 };
 
 export default paths;

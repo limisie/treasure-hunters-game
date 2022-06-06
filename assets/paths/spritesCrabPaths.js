@@ -1,6 +1,6 @@
 const sprites = {
     def: {
-        path: '../../assets/crabSprites/idleRight.png',
+        path: '../../assets/imgs/sprites/crabSprites/idleRight.png',
         size: {
             width: 84,
             height: 58,
@@ -8,7 +8,7 @@ const sprites = {
         frames: 36
     },
     idleRight: {
-        path: '../../assets/crabSprites/idleRight.png',
+        path: '../../assets/imgs/sprites/crabSprites/idleRight.png',
         size: {
             width: 84,
             height: 58,
@@ -16,7 +16,7 @@ const sprites = {
         frames: 36
     },
     idleLeft: {
-        path: '../../assets/crabSprites/idleLeft.png',
+        path: '../../assets/imgs/sprites/crabSprites/idleLeft.png',
         size: {
             width: 84,
             height: 58,
@@ -24,7 +24,7 @@ const sprites = {
         frames: 36
     },
     runRight: {
-        path: '../../assets/crabSprites/runRight.png',
+        path: '../../assets/imgs/sprites/crabSprites/runRight.png',
         size: {
             width: 80,
             height: 48,
@@ -32,7 +32,7 @@ const sprites = {
         frames: 18
     },
     runLeft: {
-        path: '../../assets/crabSprites/runLeft.png',
+        path: '../../assets/imgs/sprites/crabSprites/runLeft.png',
         size: {
             width: 80,
             height: 48,
