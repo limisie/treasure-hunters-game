@@ -69,6 +69,7 @@ export class InputController {
         if (keys[87].pressed) {
             
             if (!this.player.jumping) {
+                this.player.jumpAudio.play();
                 this.player.addVelocity(0, -PLAYER_JUMP);
                 this.player.jumping = true;
             }

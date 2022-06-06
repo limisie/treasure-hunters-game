@@ -1,5 +1,6 @@
 import { CollectibleCollider, PlatformCollider } from './collider.js';
 import { SpriteRenderer } from './spriteRenderer.js';
+import soundPaths from '../assets/paths/soundPaths.js';
 
 const INITIAL_POSITION_X = 200;
 const INITIAL_POSITION_Y = 400;
@@ -100,6 +101,8 @@ export class CollectableObject extends AnimatedObject {
         this.FLOAT_MAX = 5;
         
         this.velocity.y = this.FLOAT_SPEED;
+        
+        this.collectAudio = new Audio(soundPaths.collect.path);
     }
     
     update(player = null) {
@@ -108,6 +111,7 @@ export class CollectableObject extends AnimatedObject {
             
             if (player != null) {
                 if (this.collider.checkForCollisions(player)) {
+                    this.collectAudio.play();
                     player.score += 1;
                     delete this.collider;
                 }

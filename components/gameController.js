@@ -5,6 +5,7 @@ import paths from '../assets/paths/imagePaths.js';
 import crabSprites from '../assets/paths/spritesCrabPaths.js';
 import diamondSprites from '../assets/paths/spritesCollectablePath.js';
 import { gameOver, youWon } from './UI/ui.js';
+import soundPaths from '../assets/paths/soundPaths.js';
 
 const RESOLUTION_X = 800;
 const RESOLUTION_Y = 600;
@@ -21,15 +22,21 @@ class GameController {
         this.canvas.height = RESOLUTION_Y;
         
         this.level_end_offset = 0;
+        
+        this.gameOverAudio = new Audio(soundPaths.die.path);
+        this.wonAudio = new Audio(soundPaths.won.path);
+        
     }
     
     run = () => {
         if (this.gameLooseCondition(DEATH_ZONE)) {
+            this.gameOverAudio.play();
             this.gameOver();
             // this.initLevel1();
         } else if (!this.gameWinCondition(this.level_end_offset)) {
             requestAnimationFrame(this.run);
         } else {
+            this.wonAudio.play();
             this.gameEnd();
         }
         

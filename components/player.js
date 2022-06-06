@@ -1,4 +1,5 @@
 import { AnimatedObject } from './objects.js';
+import paths from '../assets/paths/soundPaths.js';
 
 const GRAVITY = 0.8;
 
@@ -13,6 +14,8 @@ class Player extends AnimatedObject {
         this.scrollOffset = 0;
         this.jumping = false;
         this.score = 0;
+        
+        this.jumpAudio = new Audio(paths.jump.path);
     }
     
     update() {
