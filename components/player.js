@@ -17,7 +17,6 @@ class Player extends AnimatedObject {
     
     update() {
         super.update();
-        console.log(this.score);
         
         if (this.position.y + this.size.height + this.velocity.y <= this.canvas.height) {
             this.velocity.y += GRAVITY;
